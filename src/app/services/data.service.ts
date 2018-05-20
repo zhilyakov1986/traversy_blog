@@ -9,7 +9,6 @@ export class DataService {
             {
                 firstName: 'John',
                 lastName: 'Doe',
-                email: 'john@gmail.com',
                 isActive: true,
                 registered: new Date('01/02/2018 08:00:00'),
                 hide: true
@@ -17,7 +16,6 @@ export class DataService {
             {
                 firstName: 'Kevin',
                 lastName: 'Johnson',
-                email: 'kevin@gmail.com',
                 isActive: false,
                 registered: new Date('03/02/2017 12:00:00'),
                 hide: true
@@ -25,7 +23,6 @@ export class DataService {
             {
                 firstName: 'Karen',
                 lastName: 'Williams',
-                email: 'karen@gmail.com',
                 isActive: true,
                 registered: new Date('08/02/2016 03:00:00'),
                 hide: true
