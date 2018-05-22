@@ -29,7 +29,10 @@ export class UsersComponent implements OnInit {
     this._dataService.getData().subscribe(data => {
       console.log(data);
     });
-    this.users = this._dataService.getUsers();
+    // this.users = this._dataService.getUsers();
+    this._dataService.getUsers().subscribe(users => {
+      this.users = users;
+    });
 
     this.loaded = true;
   }
