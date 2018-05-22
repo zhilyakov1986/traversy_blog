@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 
 import { User } from '../../models/User';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-users',
@@ -20,37 +21,15 @@ export class UsersComponent implements OnInit {
   enableAdd = true;
   showUserForm = false;
   @ViewChild('userForm') form: any;
+  data: any;
 
-  constructor() { }
+  constructor(private _dataService: DataService) {}
 
   ngOnInit() {
-
-    this.users = [
-      {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john@gmial.com',
-        isActive: true,
-        registered: new Date('01/02/2018 08:30:00'),
-        hide: true
-      },
-      {
-        firstName: 'Kevin',
-        lastName: 'Johnson',
-        email: 'kevin@gmail.com',
-        isActive: false,
-        registered: new Date('03/11/2017 06:20:00'),
-        hide: true
-      },
-      {
-        firstName: 'Karen',
-        lastName: 'Williams',
-        email: 'karen@gmail.com',
-        isActive: true,
-        registered: new Date('11/02/2016 10:30:00'),
-        hide: true
-      }
-    ];
+    this._dataService.getData().subscribe(data => {
+      console.log(data);
+    });
+    this.users = this._dataService.getUsers();
 
     this.loaded = true;
   }
@@ -67,17 +46,16 @@ export class UsersComponent implements OnInit {
   //   };
   // }
 
-
-  onSubmit({value, valid}: {value: User, valid: boolean}) {
-   if (!valid) {
-    console.log('FORM is not valid');
-   } else {
-     value.isActive = true;
-     value.registered = new Date();
-     value.hide = true;
-     this.users.unshift(value);
-     this.form.reset();
-   }
+  onSubmit({ value, valid }: { value: User; valid: boolean }) {
+    if (!valid) {
+      console.log('FORM is not valid');
+    } else {
+      value.isActive = true;
+      value.registered = new Date();
+      value.hide = true;
+      // this.users.unshift(value);
+      this._dataService.addUser(value);
+      this.form.reset();
+    }
   }
-
 }
