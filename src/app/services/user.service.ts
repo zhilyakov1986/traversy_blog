@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/User';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
+// of let us return an array as a observable.
 
 @Injectable()
-export class DataService {
+export class UserService {
   users: User[];
   data: Observable<any>;
   constructor() {
@@ -57,7 +58,7 @@ export class DataService {
 //     console.log('loading...');
 //     return this.users;
 //   }
-  getUsers():Observable<User[]> {
+  getUsers(): Observable<User[]> {
       return of(this.users);
   }
 
